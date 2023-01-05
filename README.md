@@ -2,6 +2,8 @@
 
 This project show how to build and deploy a microservice-based project
 
+Spring 3, Java 17
+
 Libraries:
 
 - spring-cloud-starter-actuator
