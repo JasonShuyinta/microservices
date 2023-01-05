@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: payment-service
+                fallbackuri: forward:/paymentFallBack
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: order-service
+                fallbackuri: forward:/orderFallback
+
+server:
+  port: 8989
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      order-service:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+      payment-service:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: resilience4j.circuitbreakers.stream

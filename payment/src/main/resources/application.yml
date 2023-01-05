@@ -1,0 +1,10 @@
+server:
+  port: 9191
+spring:
+  h2:
+    console:
+      enabled: true
+  application:
+    name: PAYMENT-SERVICE
+logging:
+  file: C:/Users/jason/OneDrive/Desktop/Doc/MicroService/logs/microservice.log
