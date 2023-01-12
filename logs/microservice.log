@@ -386,3 +386,9 @@ jakarta.persistence.NonUniqueResultException: query did not return a unique resu
 2023-01-12T17:39:15.235+01:00  INFO 38392 --- [http-nio-9191-exec-3] c.d.m.payment.service.PaymentService     : PaymentService request: {"paymentId":0,"paymentStatus":"success","transactionId":"9883e675-09fa-4795-8245-aa9c68fbf3b0","orderId":776,"amount":1500.0}
 2023-01-12T17:39:15.243+01:00  INFO 35196 --- [http-nio-9192-exec-6] c.d.m.order.service.OrderService         : PaymentService response from OrderService Rest call: {"paymentId":4,"paymentStatus":"success","transactionId":"9883e675-09fa-4795-8245-aa9c68fbf3b0","orderId":776,"amount":1500.0}
 2023-01-12T17:39:20.332+01:00  INFO 38392 --- [http-nio-9191-exec-4] c.d.m.payment.service.PaymentService     : PaymentService findPaymentHistoryByOrderId: {"paymentId":4,"paymentStatus":"success","transactionId":"9883e675-09fa-4795-8245-aa9c68fbf3b0","orderId":776,"amount":1500.0}
+2023-01-12T17:41:13.050+01:00  INFO 38392 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-12T17:41:15.902+01:00  INFO 35196 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-12T17:46:13.059+01:00  INFO 38392 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-12T17:46:15.912+01:00  INFO 35196 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-12T17:51:13.068+01:00  INFO 38392 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2023-01-12T17:51:15.929+01:00  INFO 35196 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
