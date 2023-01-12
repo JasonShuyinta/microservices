@@ -4,6 +4,78 @@ This project show how to build and deploy a microservice-based project
 
 Spring 3, Java 17
 
+### ORDER-SERVICE / PAYMENT-SERVICE
+Basic Microservices with Controllers, Services, Entities nad Repositories.  
+The database used is an in-memory database H2. 
+The Payment service runs on port 9191 what follows is its application.yml
+```
+server:
+  port: 9191
+spring:
+  h2:
+    console:
+      enabled: true
+  application:
+    name: PAYMENT-SERVICE
+logging:
+  file:
+    name: path/to/log/file.log
+```
+
+The Order service runs on port 9192, and what follows is its application.yml
+```
+server:
+  port: 9192
+spring:
+  h2:
+    console:
+      enabled: true
+  application:
+    name: ORDER-SERVICE
+logging:
+  file:
+    name: path/to/log/file.log
+```
+
+Both of the services need to have an application.properties to add this particular property because it would not work as a yaml: 
+```
+spring.config.import=configserver:http://localhost:9196
+```
+
+### SERVICE-REGISTRY
+The Service Registry application is the place where the microservices need to be registered in order to communicate between one another.
+This is possible thank to Spring Eureka. 
+You need to annotate the main class with @EnableEurekaServer and the microservices main class with @EnableDiscoveryClient.
+With Spring 3 only version 2022.0.0 works.
+
+### CLOUD-GATEWAY
+It is like an orchestrator for the endpoints. You just hit the gateway endpoint, and it is able to redirect to the correct microservice based of the endpoint you are trying to hit. 
+It also needs to be annotated with @EnableDiscoveryClient as it is a microservice that needs to be registered on Eureka Server and needs the application.properties as well.
+We create a Fallback Controller to tell the gateway what to do when one or more of the microservices are out, or broke. And we do that by using Resilience4j and adding the following to the application.yml
+```
+resilience4j:
+  circuitbreaker:
+    configs:
+      order-service:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+      payment-service:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: resilience4j.circuitbreakers.stream
+```
+
+### CLOUD-CONFIG-SERVER
+It is used to centralize all of the common properties of the microservices in a single place. In this case, this cloud-config-server is fetching the properties from a GitHub repository (https://github.com/JasonShuyinta/cloud-config-server). In this way you don't need to repeat yourself. 
+This as well needs to be annotated with @EnableDiscoveryClient and also @EnableConfigServer to let know Spring this is a configuration service.
+
+
 ### ELK Stack
 To store and visualize logs of the microservices, the ELK (ElasticSearch, LogStash, Kibana) Stack was used, specifically version 8.6.0.
 After you download and unzip all the softwares, there are some files to modify to adapt them to your system:
