@@ -7,4 +7,5 @@ spring:
   application:
     name: PAYMENT-SERVICE
 logging:
-  file: C:/Users/jason/OneDrive/Desktop/Doc/MicroService/logs/microservice.log
+  file:
+    name: C:/Users/jason/OneDrive/Desktop/Doc/MicroService/logs/microservice.log
