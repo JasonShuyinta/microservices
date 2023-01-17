@@ -4,9 +4,18 @@ services:
     build: ./service-registry
     ports: 
       - 8761:8761
+  gateway-service:
+    build: ./cloud-gateway
+    ports:
+      - 8989:8989
+  order-service:
+    build: ./order
+    ports:
+      - 9192:9192
   payment-service:
     build: ./payment
     ports: 
       - 9191:9191
     depends_on:
       - service-registry
+  

@@ -26,8 +26,8 @@ public class OrderService {
     @Lazy
     private RestTemplate restTemplate;
 
-    @Value("${microservice.payment-service.endpoints.endpoint.uri}")
-    private String ENDPOINT_URL;
+    //@Value("${microservice.payment-service.endpoints.endpoint.uri}")
+    private String ENDPOINT_URL = "http://PAYMENT-SERVICE/payment/doPayment";
 
     public TransactionResponse saveOrder(TransactionRequest transactionRequest) throws JsonProcessingException {
         String response = "";

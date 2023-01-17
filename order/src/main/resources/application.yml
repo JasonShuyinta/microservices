@@ -6,6 +6,12 @@ spring:
       enabled: true
   application:
     name: ORDER-SERVICE
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://service-registry:8761/eureka
 logging:
   file:
     name: C:/Users/jason/OneDrive/Desktop/Doc/MicroService/logs/microservice.log
