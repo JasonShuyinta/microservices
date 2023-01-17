@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  service-registry:
+    build: ./service-registry
+    ports: 
+      - 8761:8761
+  payment-service:
+    build: ./payment
+    ports: 
+      - 9191:9191
+    depends_on:
+      - service-registry
