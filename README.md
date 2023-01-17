@@ -81,6 +81,13 @@ Default Ports
 - ElasticSearch: 9200
 - Kibana: 5601
 
+### Docker
+To Dockerize this microservice architecture, you need remove the instance hostname from the application.yml because the dockerized service already knows its hostname. 
+Plus we extrapolated the cloud-config server and hardcoded the properties for now. So at the moment the dockerized services are service-registry, payment-service, order-service and the cloud-gateway. 
+
+To boot up everything we used docker-compose instead of single handedly booting up each and every server. 
+Obviously to do so you need a Dockerfile in each and every service. In this Dockerfiles we simply downloaded Java 17 and copied the jar from the target file after we maven clean-installed the service. 
+
 Libraries:
 
 - spring-cloud-starter-actuator
